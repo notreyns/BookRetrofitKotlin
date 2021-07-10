@@ -6,6 +6,6 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface RetrofitServices {
-    @GET("volumes?q=haruki")
-    fun getMovieList(): Call<MainModel>
+    @GET("volumes")
+    fun getMovieList(@Query("q") search_txt:String): Call<MainModel>
 }

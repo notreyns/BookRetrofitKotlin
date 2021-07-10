@@ -5,6 +5,7 @@ import android.os.Bundle
 
 import android.app.AlertDialog
 import android.widget.Button
+import android.widget.EditText
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,11 +24,14 @@ class MainActivity : AppCompatActivity() {
     lateinit var dialog: AlertDialog
     lateinit var recyclerMovieList: RecyclerView
     lateinit var search_btn: Button
+    lateinit var search_txt: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         recyclerMovieList= findViewById(R.id.recyclerMovieList)
+
+        search_txt = findViewById(R.id.input_view)
 
         mService = Common.retrofitService
         recyclerMovieList.setHasFixedSize(true)
@@ -36,13 +40,14 @@ class MainActivity : AppCompatActivity() {
         dialog = SpotsDialog.Builder().setCancelable(true).setContext(this).build()
         search_btn = findViewById(R.id.search_button)
         search_btn.setOnClickListener{
-            getAllMovieList()
+            var search: String= search_txt.text.toString().trim()
+            getAllMovieList(search)
         }
     }
 
-    private fun getAllMovieList() {
+    private fun getAllMovieList(search_txt: String) {
         dialog.show()
-        mService.getMovieList().enqueue(object : Callback<MainModel> {
+        mService.getMovieList(search_txt).enqueue(object : Callback<MainModel> {
             override fun onFailure(call: Call<MainModel>, t: Throwable) {
             }
 
