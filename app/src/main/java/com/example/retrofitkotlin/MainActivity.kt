@@ -42,13 +42,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun getAllMovieList() {
         dialog.show()
-        mService.getMovieList().enqueue(object : Callback<List<Item>> {
-            override fun onFailure(call: Call<List<Item>>, t: Throwable) {
+        mService.getMovieList().enqueue(object : Callback<MainModel> {
+            override fun onFailure(call: Call<MainModel>, t: Throwable) {
             }
 
-            override fun onResponse(call: Call<List<Item>>,
-                                    response: Response< List<Item>>) {
-                adapter = MyMovieAdapter(baseContext, response.body() as MutableList<Item>)
+            override fun onResponse(call: Call<MainModel>,
+                                    response: Response<MainModel>) {
+                adapter = MyMovieAdapter(baseContext, response.body() as MainModel)
                 adapter.notifyDataSetChanged()
                 recyclerMovieList.adapter = adapter
                 dialog.dismiss()

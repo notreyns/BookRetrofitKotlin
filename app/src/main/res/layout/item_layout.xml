@@ -1,72 +1,56 @@
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:cardElevation="8dp"
-    android:layout_margin="8dp">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="167dp">
-
-        <ImageView
-            android:id="@+id/image_movie"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/txt_name"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.238" />
-
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:padding="16dp">
+    <ImageView
+        android:id="@+id/book_cover"
+        android:layout_width="130dp"
+        android:layout_height="120dp"
+        android:src="@drawable/googlebook_icon"
+        />
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="8dp"
+        >
         <TextView
-            android:id="@+id/txt_name"
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="192dp"
-            android:layout_marginLeft="192dp"
-            android:layout_marginTop="16dp"
-            android:text="name"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
+            android:maxLines="3"
+            tools:text="The God father"
+            android:textSize="25sp"
+            android:textColor="@color/black"/>
         <TextView
-            android:id="@+id/txt_team"
+            android:id="@+id/author_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="196dp"
-            android:layout_marginLeft="196dp"
-            android:layout_marginTop="8dp"
-            android:text="team"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
-            android:textStyle="normal"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_name" />
-
+            android:textSize="22sp"
+            tools:text="Mario Puzo"/>
         <TextView
-            android:id="@+id/txt_createdby"
+            android:id="@+id/publication_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="184dp"
-            android:layout_marginLeft="184dp"
-            android:layout_marginTop="12dp"
-            android:text="createdby"
-            android:textColor="@android:color/black"
-            android:textSize="18sp"
-            android:textStyle="italic"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_team" />
+          tools:text="2012-11-30"
+            android:textSize="20sp"/>
+        <TextView
+            android:id="@+id/pages_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="608 pages"
+            android:textSize="20sp"/>
 
+    </LinearLayout>
+    <TextView
+        android:id="@+id/rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="3.0"
+        android:textSize="18sp"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</androidx.cardview.widget.CardView>
+</LinearLayout>
