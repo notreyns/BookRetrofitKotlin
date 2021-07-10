@@ -1,20 +1,19 @@
 package com.example.retrofitkotlin
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.retrofitkotlin.model.Item
 import com.example.retrofitkotlin.model.MainModel
 
-import com.squareup.picasso.Picasso
-
-class MyMovieAdapter(private val context: Context,private val model: MainModel)
+class MyMovieAdapter(private val context: Context, private val model: MainModel)
     :RecyclerView.Adapter<MyMovieAdapter.MyViewHolder>() {
     var myList = model.items
 
@@ -28,7 +27,11 @@ class MyMovieAdapter(private val context: Context,private val model: MainModel)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_layout, parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate(
+            R.layout.item_layout,
+            parent,
+            false
+        )
         return MyViewHolder(itemView)
     }
 
@@ -44,9 +47,16 @@ class MyMovieAdapter(private val context: Context,private val model: MainModel)
         holder.txt_rating.text = listItem?.volumeInfo?.averageRating.toString()
 
 
-        Glide.with(context).load(listItem?.volumeInfo?.imageLinks?.thumbnail)
+        var imageUrl: String = listItem?.volumeInfo?.imageLinks?.thumbnail.replace("http", "https")
+
+        Glide.with(context).load(imageUrl)
                 .placeholder(R.drawable.googlebook_icon)
                 .into(holder.image)
+        holder.itemView.setOnClickListener{
+            var intent = Intent(Intent.ACTION_VIEW, Uri.parse(listItem?.volumeInfo?.previewLink))
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent)
+        }
 
 
         //Picasso.get().load(listItem?.volumeInfo?.imageLinks?.thumbnail).into(holder.image)
